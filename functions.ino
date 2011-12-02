@@ -39,9 +39,9 @@ int skip(int step, int maxSteps, int direction) {
 }
 
 int nextStepMode() {
-  if( muxDigitalRead(2,9) ) {
+  if( muxDigitalRead(0,9) ) {
     return 1;
-  } else if ( muxDigitalRead(2,8) ) {
+  } else if ( muxDigitalRead(0,8) ) {
     return 2;
   } else {
     return 0;
