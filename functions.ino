@@ -39,11 +39,36 @@ int skip(int step, int maxSteps, int direction) {
 }
 
 int nextStepMode() {
-  if( muxDigitalRead(0,9) ) {
+  if( muxDigitalRead(0,12) ) {
     return 1;
-  } else if ( muxDigitalRead(0,8) ) {
+  } else if ( muxDigitalRead(0,11) ) {
     return 2;
   } else {
     return 0;
   }
+}
+
+int setCurrentTrack (){
+  int trackSelectorPos = 0;
+
+  if(trackSelectorPins[0] == HIGH) {
+    if(trackSelectorPins[1] == HIGH) {
+      trackSelectorPos = 2;
+    }
+    else {
+      trackSelectorPos = 1;
+    }
+  }
+  else if(trackSelectorPins[1] == HIGH) {
+    if(trackSelectorPins[2] == HIGH) {
+      trackSelectorPos = 4;
+    }
+    else {
+      trackSelectorPos = 3;
+    }
+  }
+  else {
+    trackSelectorPos = 5;
+  }
+  return trackSelectorPos-1;
 }
